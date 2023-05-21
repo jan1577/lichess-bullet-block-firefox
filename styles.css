@@ -1,0 +1,21 @@
+
+body, #content{
+    overflow: hidden;
+    min-height: 200px;
+    min-width: 350px;
+    text-align:center;
+    display: block;
+}
+
+h1{
+    font-size: medium;
+}
+
+a{
+    margin:auto;
+}
+
+.fab, .fas{
+	color:black;
+  font-size:20px;
+}

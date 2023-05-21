@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <title>Options</title>
+</head>
+<body>
+    <div id="content">
+        <h1>Do you want to block Blitz Games as well?</h1>
+        <form action="/action_page.php">
+            <input type="radio" id="block_blitz" name="blitz_radio" value="yes">
+            <label for="html">yes</label><br>
+            <input type="radio" id="do_not_block_blitz" name="blitz_radio" value="no">
+            <label for="css">no</label><br>
+        </form>
+        <br>
+        <h1>Select Puzzle Variants you want to block</h1>
+        <div id="puzzlevariants">
+            <input type="checkbox" id="block_storm" name="block_storm">
+            <label for="html">Puzzle Storm</label><br>
+            <input type="checkbox" id="block_streak" name="block_streak">
+            <label for="css">Puzzle Streak</label><br>
+            <input type="checkbox" id="block_racer" name="block_racer">
+            <label for="css">Puzzle Racer</label><br>
+        </div>
+        <br>
+        <button id="save">Save</button>
+        <div id="status"></div>
+        <br>
+        <a target = "blank" href="https://github.com/jan1577/lichess-bullet-block-firefox"><i class="fab fa-github"></i></a>
+        <a target = "blank" href="https://github.com/jan1577/lichess-bullet-block-firefox/issues"><i class="fas fa-bug"></i></a>
+    </div>
+    <script src="options.js"></script>
+</body>
+</html>
