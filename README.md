@@ -2,7 +2,7 @@
 
 <table>
   <tr>
-   <a href="https://github.com/jan1577/lichess-bullet-block-firefox/blob/main/README.md" target="_blank">
+   <a href="https://addons.mozilla.org/en-US/firefox/addon/lichessbulletblock/" target="_blank">
       <img src="images/firefox.svg" alt="Firefox logo" width="30px">
     </a>
     <a href="https://chrome.google.com/webstore/detail/lichessbulletblock/hggjliiolhipmgoomadfmpdlafknhpmd" target="_blank">
@@ -26,16 +26,7 @@ Bullet Games are addictive - this Firefox extension removes all options to launc
 you from wasting your time by chasing the next dopamine push. 
 
 ## Setup
-The extension has not been signed by Firefox yet. At the moment, you can add it to Firefox Developer Edition or Firefox Nightly by uploading it as a zip folder.Follow the steps below:
-
-First, you have to allow the installation of unsigned extension by following the following steps
-- go to about:config
-- set xpinstall.signatures.required to false
-
-- Clone the repository and zip the files or download is as a zip-folder
-- go to about:addons
-- click on the settings symbol and select "Install Add-on From File"
-- select the ffolder and confirm you want to install the unsigned extension
+You can download the extension [here](https://addons.mozilla.org/en-US/firefox/addon/lichessbulletblock/).
 
 If the extension does not work right away, you may have to allow the extension to always access lichess.org instead of "Only when clicked".
 
