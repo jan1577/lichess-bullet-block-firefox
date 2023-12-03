@@ -1,14 +1,13 @@
 function saveOptions() {
-  let block_blitz;
+  let block_blitz = false;
   if (document.getElementById('block_blitz').checked) {
     block_blitz = true;
-  } else if (document.getElementById('do_not_block_blitz').checked) {
-    block_blitz = false;
-  }
+  } 
 
   let block_racer = false;
   let block_streak = false;
   let block_storm = false;
+
   if (document.getElementById('block_racer').checked) {
     block_racer = true;
   }
@@ -19,11 +18,17 @@ function saveOptions() {
     block_storm = true;
   }
 
+  enable_quotes = false;
+  if (document.getElementById('enable-quotes').checked) {
+    enable_quotes = true;
+  }
+
   browser.storage.local.set({
     block_blitz_storage: block_blitz,
     block_puzzle_storm: block_storm,
     block_puzzle_racer: block_racer,
     block_puzzle_streak: block_streak,
+    enable_quotes: enable_quotes
   }, function () {
     // Update status to let user know options were saved.
     var status = document.getElementById('status');
@@ -50,6 +55,16 @@ function restoreOptions() {
   for (let i = 0; i < 5; i += 2) {
     restorePuzzles(puzzleArray[i], puzzleArray[i + 1])
   }
+
+  browser.storage.local.get(['enable_quotes'], function (item) {
+    if (item['enable_quotes']) {
+      document.getElementById('enable-quotes').checked = true;
+      document.getElementById('disable-quotes').checked = false;
+    } else {
+      document.getElementById('enable-quotes').checked = false;
+      document.getElementById('disable-quotes').checked = true;
+    }
+  });
 }
 
 

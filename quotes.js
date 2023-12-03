@@ -57,7 +57,7 @@ function insertQuote() {
 }
 
 
-enable_quotes = chrome.storage.local.get(['enable_quotes'], function (result) {
+enable_quotes = browser.storage.local.get(['enable_quotes'], function (result) {
     if (!result['enable_quotes']) {
         return;
     } else {
