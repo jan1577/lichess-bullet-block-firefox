@@ -20,7 +20,7 @@ function removeElementsFromQuickPairing(){
 
 
 /**
- * Detect new games in the lobb
+ * Detect new games in the lobby
  */
 function detectLobbyUpdates(){
     // add Mutation observer to <table class"hools__list"> to check if lobby is updated
