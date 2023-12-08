@@ -3,6 +3,7 @@ const { expect } = require('chai');
 const firefox = require("selenium-webdriver/firefox");
 
 let firefoxOptions = new firefox.Options();
+firefoxOptions.setBinary('/usr/bin/firefox');
 firefoxOptions.addArguments('--headless');
 
 let driver = new Builder()
