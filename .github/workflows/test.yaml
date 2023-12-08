@@ -27,3 +27,4 @@ jobs:
       - run: npx mocha test
         env:
           CI: true
+          FIREFOX_PATH: /usr/bin/firefox
