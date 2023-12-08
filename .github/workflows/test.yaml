@@ -25,7 +25,7 @@ jobs:
           sudo apt-get install -y firefox
       - run: npm ci
 
-      name: Check Firefox installation
+      - name: Check Firefox installation
         run: ls /usr/bin/firefox
   
       - run: npx mocha test
