@@ -23,7 +23,7 @@ jobs:
       - name: Setup Firefox
         run: |
           sudo apt-get install -y firefox
-          echo "FIREFOX_PATH=$(which firefox)" >> $GITHUB_ENV
+          echo "FIREFOX_PATH=$(realpath $(which firefox))" >> $GITHUB_ENV
       - run: npm ci
 
       - name: Check Firefox installation
