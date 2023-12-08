@@ -1,6 +1,6 @@
 function saveOptions() {
   let block_blitz = false;
-  if (document.getElementById('block_blitz').checked) {
+  if (document.getElementById('block-blitz').checked) {
     block_blitz = true;
   } 
 
@@ -8,13 +8,13 @@ function saveOptions() {
   let block_streak = false;
   let block_storm = false;
 
-  if (document.getElementById('block_racer').checked) {
+  if (document.getElementById('block-racer').checked) {
     block_racer = true;
   }
-  if (document.getElementById('block_streak').checked) {
+  if (document.getElementById('block-streak').checked) {
     block_streak = true;
   }
-  if (document.getElementById('block_storm').checked) {
+  if (document.getElementById('block-storm').checked) {
     block_storm = true;
   }
 
@@ -44,11 +44,11 @@ function saveOptions() {
 function restoreOptions() {
   browser.storage.local.get(['block_blitz_storage'], function (item) {
     if (item['block_blitz_storage']) {
-      document.getElementById('block_blitz').checked = true;
-      document.getElementById('do_not_block_blitz').checked = false;
+      document.getElementById('block-blitz').checked = true;
+      document.getElementById('enable-blitz').checked = false;
     } else {
-      document.getElementById('block_blitz').checked = false;
-      document.getElementById('do_not_block_blitz').checked = true;
+      document.getElementById('block-blitz').checked = false;
+      document.getElementById('enable-blitz').checked = true;
     }
   });
   
@@ -80,7 +80,7 @@ function restorePuzzles(storageValue, elementId) {
 
 // used to restore selected options from local storage: first is the name of the variable
 // in local storage, second the html id of the checkbox
-const puzzleArray = ['block_puzzle_streak', 'block_streak', 'block_puzzle_storm', 'block_storm', 'block_puzzle_racer', 'block_racer']
+const puzzleArray = ['block_puzzle_streak', 'block-streak', 'block_puzzle_storm', 'block-storm', 'block_puzzle_racer', 'block-racer']
 
 document.addEventListener('DOMContentLoaded', restoreOptions);
 document.getElementById('save').addEventListener('click',
