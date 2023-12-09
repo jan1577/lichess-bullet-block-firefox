@@ -6,6 +6,7 @@
     "selenium-webdriver": "^4.16.0"
   },
   "devDependencies": {
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "geckodriver": "^2.0.3"
   }
 }
