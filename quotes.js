@@ -49,7 +49,7 @@ function insertQuote() {
     let p = document.createElement('p');
     p.id = 'quote-text';
     p.style = "text-align:center; margin: 1%;";
-    p.innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+    p.textContent = quotes[Math.floor(Math.random() * quotes.length)];
     div.appendChild(p);
 
     let topBar = document.getElementById('top');
