@@ -29,7 +29,7 @@ jobs:
       - name: Check Firefox installation
         run: ls /usr/bin/firefox
   
-      - run: node node_modules\mocha\bin\mocha test --exit
+      - run: node node_modules/mocha/bin/mocha test --exit
         env:
           CI: true
           FIREFOX_PATH: /usr/bin/firefox
