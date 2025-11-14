@@ -2,8 +2,8 @@ const { Builder } = require('selenium-webdriver');
 const { expect } = require('chai');
 const firefox = require("selenium-webdriver/firefox");
 
-let firefoxOptions = new firefox.Options();
-firefoxOptions.addArguments('--headless');
+let firefoxOptions = new firefox.Options()
+    .addArguments('--headless')
 
 if (process.env.FIREFOX_PATH) {
     firefoxOptions.setBinary(process.env.FIREFOX_PATH);
