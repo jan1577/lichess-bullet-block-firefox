@@ -36,19 +36,50 @@ function detectLobbyUpdates(){
 }
 
 
+/**
+ * Return the desired slider minimum based on storage.
+ * Resolves to 12 if block_blitz_storage is true, otherwise 7.
+ */
+function getSliderMin() {
+	return new Promise(resolve => {
+		browser.storage.local.get(['block_blitz_storage'], function(result) {
+			if (result && result['block_blitz_storage']) resolve(12);
+			else resolve(7);
+		});
+	});
+}
+
+/**
+ * Ensures input.min is set and input.value >= min
+ */
+function applyMinToInput(input) {
+    if (!input) return;
+    getSliderMin().then(min => {
+        input.min = min;
+        const currentValue = Number(input.value);
+        if (Number.isNaN(currentValue) || currentValue < min) {
+            const newValue = String(min);
+            input.value = newValue;
+            input.setAttribute('value', newValue);
+
+            // fire events so any page listeners update
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+
+            // ppdate label span in the same wrapper so UI reflects new value immediately
+            const wrapper = input.closest('.time-choice.range, .increment-choice.range');
+            const span = wrapper ? wrapper.querySelector('span') : null;
+            if (span) span.textContent = newValue;
+        }
+    });
+}
+
+
 function changeSliderMinimum(){
     let slider = document.querySelector(
         "#modal-wrap > div > div.setup-content > div.time-mode-config.optional-config > div.time-choice.range > input"
     );
-    // minimum blitz value
-    slider.min = 7;
-
-    browser.storage.local.get(['block_blitz_storage'], function(result) {
-        if (result['block_blitz_storage']){
-            // minimum rapid value
-            slider.min = 12;
-        }
-    });
+    applyMinToInput(slider);
 }
 
 
@@ -84,7 +115,6 @@ function compareStrings(substrings, link){
     }
 }
 
-
 // first time use: set all values to false (only bullet blocked)
 browser.storage.local.get(['block_blitz_storage'], function(result) {
     if (result == null) {
@@ -119,7 +149,7 @@ if (document.querySelector("#main-wrap > main > div.lobby__table")){
   const mutationObserverLobbyStart = new MutationObserver(mutations => {
       // check whether the button was clicked or the div closed
       if (document.querySelector("#main-wrap > main > div.lobby__table > div.lobby__start > a.button.button-metal.config_hook.active")){
-          changeSliderMinimum();
+        changeSliderMinimum();
       }
   });
   mutationObserverLobbyStart.observe(lobbyStart, {childList: true});
@@ -157,3 +187,33 @@ if (document.querySelector("#main-wrap > main > div.round__app.variant-standard 
         })
     }
 }
+
+// Create a MutationObserver to watch for added elements
+const rangeObserver = new MutationObserver((mutationsList) => {
+  for (const mutation of mutationsList) {
+    for (const node of mutation.addedNodes) {
+      if (node.nodeType === 1) {
+        // Check if the element itself or its descendants match
+        const target = node.matches?.('.time-choice.range')
+          ? node
+          : node.querySelector?.('.time-choice.range');
+
+        if (target) {
+          const input = target.querySelector('input[type="range"]');
+          if (input) {
+            applyMinToInput(input);
+          }
+        }
+      }
+    }
+  }
+});
+
+// Start observing the document body for added nodes
+rangeObserver.observe(document.body, { childList: true, subtree: true });
+
+// case where the element is already present on page load
+document.querySelectorAll('.time-choice.range input[type="range"]').forEach(input => {
+  applyMinToInput(input);
+});
+
